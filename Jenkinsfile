@@ -8,7 +8,7 @@ pipeline {
         stage('拉取代码') {
             steps {
                 echo "Pulling code from GitHub main branch..."
-                git url: 'https://github.com/msg-555/mvc-.git', branch: 'main'
+                git url: 'https://github.com/WXHTCY/gsm.git', branch: 'main'
             }
         }
         stage('构建项目') {
