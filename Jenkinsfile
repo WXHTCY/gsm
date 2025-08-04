@@ -32,7 +32,7 @@ pipeline {
                 '''
             }
         }
-        
+    
         stage('运行测试') {
             steps {
                 echo "Running unit tests..."
