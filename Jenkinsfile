@@ -100,7 +100,7 @@ pipeline {
         success {
             echo "=============================================="
             echo "🎉 Build and deployment completed successfully!"
-            echo "Access URL: http://111.230.94.55:8080/CollegeHome"
+            echo "Access URL: http://111.230.94.55:8081/CollegeHome"
             echo "=============================================="
         }
         failure {
