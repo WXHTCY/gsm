@@ -8,7 +8,7 @@ pipeline {
         stage('拉取代码') {
             steps {
                 echo "Pulling code from GitHub main branch..."
-                git url: 'https://github.com/msg-555/mvc-.git', branch: 'main'
+                git url: 'https://github.com/WXHTCY/gsm.git', branch: 'main'
             }
         }
         stage('构建项目') {
@@ -17,15 +17,15 @@ pipeline {
                 bat 'mvn clean package -Dmaven.test.skip=true'
                 // 检查 WAR 包是否生成
                 bat '''
-                    if not exist "target/MVC.war" (
+                    if not exist "target/gsm.war" (
                         echo "ERROR: WAR package not generated!"
                         exit 1
                     ) else (
-                        echo "WAR package generated successfully: target/MVC.war"
+                        echo "WAR package generated successfully: target/gsm.war"
                         dir target (
-                            dir MVC.war (
+                            dir gsm.war (
                                 echo "WAR package size:"
-                                dir /s /b MVC.war
+                                dir /s /b gsm.war
                             )
                         )
                     )
@@ -46,11 +46,11 @@ pipeline {
                 
                 // 先确认本地WAR包存在
                 script {
-                    def warFile = fileExists('target/MVC.war')
+                    def warFile = fileExists('target/gsm.war')
                     if (!warFile) {
                         error("WAR package not found! Cannot deploy.")
                     }
-                    echo "Local WAR package confirmed: target/MVC.war"
+                    echo "Local WAR package confirmed: target/gsm.war"
                 }
                 
                 sshPublisher(publishers: [
@@ -58,7 +58,7 @@ pipeline {
                         configName: 'my-server',
                         transfers: [
                             sshTransfer(
-                                sourceFiles: 'target/MVC.war',
+                                sourceFiles: 'target/gsm.war',
                                 remoteDirectory: '/apache-tomcat-9.0.89/webapps',
                                 cleanRemote: false,
                                 flatten: true,
@@ -70,7 +70,7 @@ pipeline {
                                     ls -ld $TOMCAT_WEBAPPS || { echo "ERROR: 目标目录 $TOMCAT_WEBAPPS 不存在!"; exit 1; }
                                     
                                     echo "=== 检查WAR包是否上传成功 ==="
-                                    ls -l $TOMCAT_WEBAPPS/MVC.war || { echo "ERROR: WAR包未上传到 $TOMCAT_WEBAPPS!"; exit 1; }
+                                    ls -l $TOMCAT_WEBAPPS/gsm.war || { echo "ERROR: WAR包未上传到 $TOMCAT_WEBAPPS!"; exit 1; }
                                     
                                     echo "=== 停止Tomcat服务 ==="
                                     /root/apache-tomcat-9.0.89/bin/shutdown.sh
@@ -96,7 +96,7 @@ pipeline {
         success {
             echo "=============================================="
             echo "🎉 Build and deployment completed successfully!"
-            echo "Access URL: http://111.230.94.55:8080/MVC"
+            echo "Access URL: http://111.230.94.55:8080/gsm"
             echo "=============================================="
         }
         failure {
