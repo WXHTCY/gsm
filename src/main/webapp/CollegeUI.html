@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .topDiv{
+            width: 100%;
+            margin: 0;
+            height: 114px;
+        }
+
+        #head{
+            width: 150px;
+            height: 20px;
+        }
+
+        #head a{
+            color: #666666;
+            text-emphasis: none;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        b{
+            width: 100%;
+            height: 2px;
+        }
+
+        #head b{
+            color: #265895;
+
+        }
+
+        #head .t{
+            position: relative;
+            top: 14px;
+            left: 1080px;
+        }
+
+        .Search{
+            width: 287px;
+            height: 38px;
+            background: url(https://www.guet.edu.cn/_upload/tpl/00/1d/29/template29/htmlRes/style_res/top_hunt_bg.png) no-repeat;
+            margin-top: 15px;
+            float: right;
+        }
+
+        .search_text{
+            float: left;
+            width: 195px;
+            margin-top: 2px;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+            font-family: "å¾®è½¯é›…é»‘";
+            color: #5c5c5c;
+            margin-left: 15px;
+        }
+
+        #head div a:not(a[href="b"]):hover{
+            color: #1D6DB7;
+        }
+
+        #head .Search{
+            position: relative;
+            left: 1050px;
+            margin-top: 25px;
+        }
+
+        .button {
+            background: url(https://www.guet.edu.cn/_upload/tpl/00/1d/29/template29/htmlRes/style_res/top_hunt.png) no-repeat;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            margin-right: 10px;
+            outline: none;
+        }
+
+        .logo{
+            position:absolute;
+            left: 200px;
+            top: 24px;
+            width: 384px;
+            height: 70px;
+            background-image: url(https://www.guet.edu.cn/_upload/tpl/00/1d/29/template29/htmlRes/logo.png);
+            background-size: 384px 70px;
+            /* z-index: -1; */
+        }
+
+        .fdj input{
+            position:absolute;
+            float: right;
+            height: 23px;
+            margin-top: 8px;
+            right: 0px;
+            outline: none;
+            border: none;
+        }
+
+        .navWrap{
+            position:absolute;
+            width: 100%;
+            background: #265895;
+            height: 50px;
+            margin: 0;
+        }
+
+        nav{
+            padding-left: 200px;
+            width: 1000px;
+            height: 50px;
+        }
+        nav ul[class="first"]{
+            display: flex;
+        }
+
+        .first > li{
+            position: relative; /* 为二级菜单定位做准备 */
+            width: 100px;
+            height: 50px;
+            /* border: 1px solid blue; */
+            flex: 1;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            background-color: #265895;
+        }
+
+        .second > li{
+            list-style: none;
+            text-align: center;
+            width: 160px;
+            line-height: 50px;
+            line-height: 50px;
+            background-color: #1d3f7e;
+        }
+
+        li a{
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .first > li:hover ul{
+            max-height: 100px;
+        }
+
+        .first > li a:hover{
+            background-color: #1d3f7e;
+        }
+
+        .second > li a:hover{
+            background-color: #265895;
+        }
+
+        .second{
+            /* display: none; */
+            position: relative; /*绝对定位*/
+            left: 0;
+            width: 160px;
+            max-height: 0; /* 初始高度设置为0 */
+            overflow: hidden; /*隐藏溢出内容*/
+            transition: max-height 0.5s ease-out; /*使用max-height过渡*/
+            transform: none !important; /*禁用原来的transform*/
+            transform-origin: unset !important; /*重置transfrom-orifin*/
+        }
+        /* li{
+            width: 100px;
+            height: 50px;
+            list-style: none;
+            float: left;
+        } */
+
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .tit{
+            padding: 10px;
+        }
+
+        .abc{
+            padding: 5px;
+        }
+
+        .abb{
+            width: 100%;
+            padding: 2px;
+            background: #08599a;
+        }
+
+        .ttt{
+            font-size:14px;
+        }
+
+        .dynamic {
+            height: 35px;
+            line-height: 34px;
+            width: 660px;
+            border-bottom: 1px solid #d7d7d7;
+        }
+
+        .dynamicb {
+            width: 250px;
+            background: #08599a;
+            border-bottom: none;
+            height: 44px;
+            line-height: 44px;
+        }
+        .dynamice {
+            width: 325px;
+        }
+
+        element.style {
+            width: 320px;
+        }
+
+        .dynamic h2 {
+            font-size: 16px;
+            color: #464646;
+            font-weight: normal;
+            float: left;
+            padding: 0 5px;
+            border-bottom: 2px solid #08599a;
+        }
+
+        .dynamicb h2 {
+            color: #fff;
+            border-bottom: none;
+            text-indent: 10px;
+        }
+
+        .dynamic span a {
+            width: 38px;
+            height: 25px;
+            display: block;
+            float: right;
+        }
+
+        .dynamicb span a {
+            width: 38px;
+            height: 25px;
+            margin-top: 0px;
+            display: block;
+            float: right;
+        }
+
+        .dynamice span a {
+            margin-top: 0;
+        }
+
+        .infor_lista {
+            width: 318px;
+            height: auto;
+            overflow: hidden;
+            border: 1px solid #eee;
+            margin-top: 8px;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, img {
+            border: medium none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, ol{
+            list-style: none;
+        }
+
+        .dynamic_list{
+            margin-top: 10px;
+            width: 314px;
+        }
+
+        .dynamic_listb{
+            width: 325px;
+            margin-top: 12px;
+        }
+
+        .dynamic_liste {
+            width: 320px;
+            margin-top: 0px;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .fl{
+            float: left;
+        }
+
+        .dynamic_list li {
+            line-height: 31px;
+            font-size: 14px;
+            float: left;
+            color: #5c5c5c;
+            width: 314px;
+            background: url(https://www.guet.edu.cn/_upload/tpl/00/1d/29/template29/htmlRes/style_res/xdd.png
+            ) no-repeat 0px 14px;
+            text-indent: 12px;
+        }
+
+        .dynamic_liste li {
+            line-height: 31px;
+            background: url(https://www.guet.edu.cn/_upload/tpl/00/1d/29/template29/htmlRes/style_res/xdd.png
+            ) no-repeat 5px 15px;
+            text-indent: 15px;
+        }
+
+        a, img {
+            border: 0;
+            text-decoration: none;
+        }
+
+        .dynamic_list li a {
+            color: #222222;
+            position:absolute;
+        }
+
+        .dynamic_list li span {
+            float: right;
+            margin-right: 0;
+            color: #666666;
+        }
+
+        .informBoxc {
+            width: 320px;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .content {
+            margin-top: 5px;
+            width: 1000px;
+            float: left;
+        }
+
+        .contente {
+            margin-top: 1px;
+        }
+
+        .gundong{
+            width: 998px;
+            height: 140px;
+            border: 1px solid #eee;
+            margin-top: 8px;
+        }
+        .scroll{
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .hhh {
+            width: 8px;
+            text-align: center;
+        }
+
+        .leaderstyle163284 {
+            font-size: 9pt;
+        }
+
+        A.c163284 {
+            font-size: 9pt;
+            color: #222222;
+            text-decoration: none;
+        }
+
+        A.c163284:link {
+            color: #222222;
+        }
+
+        .TY1 {
+            display: none;
+        }
+
+        A.c163284 {
+            font-size: 9pt;
+            color: #222222;
+            text-decoration: none;
+        }
+
+        A.c163284:visited {
+            color: #222222;
+        }
+
+        .gg{
+            width: 100%;
+            background: #265895;
+            height: 2px;
+            margin: 0;
+        }
+
+        .footWrap {
+            width: 100%;
+            margin: 30px auto 0;
+            position: relative;
+            z-index: 0;
+        }
+
+        .footDiv_two {
+            width: 100%;
+            margin: 10px auto 0;
+            min-height: 96px;
+            color: #FFFFFF;
+            font-size: 13px;
+            overflow: hidden;
+            background: #224b77;
+        }
+
+        .foot_two {
+            width: 1000px;
+            margin: 0px auto;
+        }
+
+        .foot_two p {
+            line-height: 32px;
+            margin-top: 20px;
+            width: 600px;
+            float: left;
+            text-align: left;
+        }
+
+        .choice {
+            width: 1000px;
+            margin-top: 10px;
+            height: auto;
+            float: left;
+        }
+
+        .lh1 {
+            line-height: 1;
+        }
+
+        .white {
+            color: white;
+        }
+
+        .fs16 {
+            font-size: 14px;
+        }
+
+        .pt10 {
+            padding-top: 10px;
+        }
+
+        .main_titT a {
+            color: #999999;
+            padding: 0 5px;
+        }
+
+        .main_titT {
+            border-bottom: 2px solid #ffb64d;
+            color: #999;
+        }
+
+        .main_tit {
+            height: 54px;
+            line-height: 54px;
+            font-size: 14px;
+            width: 1000px;
+            margin-left: 200px;
+            border-bottom: 2px solid #08599a;
+        }
+
+        .main_content {
+            width: 998px;
+            margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #EEEEEE;
+            border-top: none;
+        }
+
+        .main_contit p {
+            width: 970px;
+            text-align: center;
+            font-size: 14px;
+            color: #999999;
+            margin: 34px 0 10px 0;
+        }
+
+        .main_contit {
+            width: 970px;
+            margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .main_art {
+            width: 998px;
+            margin: 72px auto 0;
+            background: #fbfbfb;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .main_contit {
+            width: 970px;
+            margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .main_contit h2 {
+            width: 970px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 24px;
+            color: #000000;
+            font-weight: normal;
+            margin-top: 46px;
+        }
+
+        .main_contit p {
+            width: 970px;
+            text-align: center;
+            font-size: 14px;
+            color: #999999;
+            margin: 34px 0 10px 0;
+        }
+
+        .main_conDiv {
+            width: 970px;
+            margin: 44px auto 0;
+        }
+
+        element.style {
+            border: 0px;
+            padding: 0px;
+            vertical-align: baseline;
+            font-family: 微软雅黑;
+            text-indent: 37.3333px;
+            line-height: 33.6px;
+            color: #333333;
+            text-align: justify;
+            background-color: #ffffff;
+            font-size: 21px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        element.style {
+            text-align: center;
+        }
+
+        .main_art {
+            width: 998px;
+            margin: 72px auto 0;
+            background: #fbfbfb;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .xlwz {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .wp_artfuns .wp_art_adjoin .next {
+            padding-left: 10px;
+        }
+
+        /* 添加样式优化 */
+        .news-title {
+            text-align: center;       /* 标题居中 */
+            font-size: 1.6em;         /* 标题字体大小 */
+            color: #333;              /* 标题颜色 */
+            margin-bottom: 0.5em;     /* 标题底部间距 */
+            padding-bottom: 0.3em;    /* 标题内边距 */
+            border-bottom: 2px solid #eee; /* 标题下划线 */
+        }
+
+        .article-content {
+            line-height: 1.8;         /* 内容行高 */
+            color: black;              /* 内容颜色 */
+            font-size: 1.5em;         /* 标题字体大小 */
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="abb"></div>
+<div class="topDiv">
+
+    <div class="logo"></div>
+
+    <div class="top-fr">
+        <div id="head">
+            <div class="b"></div>
+            <div class="t">
+                <a href=""> 加入收藏 </a> | <a href=""> 学校主页 </a>
+            </div>
+            <div class="Search" frag="窗口1">
+                <form action="">
+                    <input type="text" value="请输入关键字搜索" class="search_text">
+                    <div class="fdj fr">
+                        <input type="submit" class="button pngFix" value>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navWrap"></div>
+<nav>
+    <ul class="first">
+        <li><a href="">首页</a></li>
+        <li>
+            <a href="">学院概况</a>
+            <ul class="second">
+                <li><a href="">学院简介</a></li>
+                <li><a href="">现任领导</a></li>
+                <li><a href="">组织机构</a></li>
+                <li><a href="">办事指南</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">师资队伍</a>
+            <ul class="second">
+                <li><a href="">师资队伍简介</a></li>
+                <li><a href="">硕士博士导师</a></li>
+                <li><a href="">按教师所在部门</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">本科生教育</a>
+            <ul class="second">
+                <li><a href="">本科生教育</a></li>
+                <li><a href="">创新创业</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">研究生教育</a>
+            <ul class="second">
+                <li><a href="">学位点年度建设</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">科学研究</a>
+            <ul class="second">
+                <li><a href="">科研平台</a></li>
+                <li><a href="">研究团队</a></li>
+                <li><a href="">科研平台</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">党建工作</a>
+            <ul class="second">
+                <li><a href="">支部设置</a></li>
+                <li><a href="">专题活动</a></li>
+                <li><a href="">理论学习</a></li>
+                <li><a href="">基层动态</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">学生工作</a>
+            <ul class="second">
+                <li><a href="">学生活动</a></li>
+                <li><a href="">通知公告</a></li>
+                <li><a href="">就业指导</a></li>
+                <li><a href="">易班动态</a></li>
+            </ul>
+        </li>
+        <li><a href="">人才招聘</a></li>
+        <li><a href="">理论学习</a></li>
+    </ul>
+</nav>
+
+<div class="mainWrap clearfix">
+    <div class="main_tit">
+        <div class="main_titT main_titTa">
+            <img src="https://www.guet.edu.cn/_upload/tpl/00/1d/29/template29/htmlRes/bri_icon1.png">
+            <span frag="窗口21" portletmode="simpleColumnAttri">
+                <a href="/dept7/main.htm" target="_self">首页</a>
+                <span class="possplit"> &gt; </span>
+                <a href="/dept7/1139/list.htm" target="_self">学院新闻</a>
+            </span> &gt;
+            正文
+        </div>
+    </div>
+    <div class="main_content" frag="窗口29" portletmode="simpleArticleAttri">
+        <script>
+            // 发送AJAX请求获取新闻数据
+            function getNews() {
+                const xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            try {
+                                // 解析JSON响应
+                                const result = JSON.parse(xhr.responseText);
+                                console.log("解析后的响应数据:", result);
+
+                                if (result && result.content && result.title) {
+                                    const content = result.content;
+                                    const title = result.title;
+                                    console.log("获取到的标题：",title);
+                                    console.log("获取到的新闻内容:", content);
+
+                                    // 显示新闻内容
+                                    const newsContentElement = document.getElementById('newsContent');
+                                    if (newsContentElement) {
+                                        // 清空加载指示器
+                                        newsContentElement.innerHTML = '';
+                                        // 创建居中的H2标题
+                                        const titleElement = document.createElement('h2');
+                                        titleElement.textContent = title;
+                                        titleElement.className = 'news-title'; // 添加类名用于样式
+                                        newsContentElement.appendChild(titleElement);
+
+                                        // 添加空行（使用<br>或CSS margin）
+                                        const emptyLine = document.createElement('div');
+                                        emptyLine.className = 'empty-line';
+                                        newsContentElement.appendChild(emptyLine);
+
+                                        // 添加原始内容HTML
+                                        const contentContainer = document.createElement('div');
+                                        contentContainer.className = 'article-content';
+                                        contentContainer.innerHTML = content;
+                                        newsContentElement.appendChild(contentContainer);
+                                    }
+
+                                } else {
+                                    console.log("响应数据格式不正确或缺少内容");
+                                }
+                            } catch (e) {
+                                console.log("JSON解析失败:", xhr.responseText);
+                                console.error("解析响应失败:", e);
+                            }
+                        } else {
+                            console.log(`请求失败，状态码: ${xhr.status}`);
+                            console.error('AJAX请求错误', xhr.status, xhr.statusText);
+                        }
+                    }
+                };
+
+                const contextPath = window.location.pathname.split('/')[1];
+                const requestUrl = `/${contextPath}/news/getNews`;
+                console.log('实际请求URL:', requestUrl);
+                xhr.open('get', requestUrl, true);
+                xhr.overrideMimeType("application/json;charset=UTF-8");
+                xhr.send();
+            }
+
+            // 页面加载时初始化
+            document.addEventListener('DOMContentLoaded', function() {
+                getNews();
+            });
+        </script>
+
+        <div id="newsContent" class="main_art xlwz">
+            <div class="loading-indicator">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+
+        <div id="div_vote_id"></div>
+        <div class="main_art xlwz"> <div class="wp_artfuns"><div class="wp_art_adjoin">
+            <span class="prev">上一篇：</span><span class="prev-title">无</span><span class="next">下一篇：</span><span class="next-title"><a href="">无</a></span></div></div>
+        </div>
+    </div>
+</div>
+
+<div class="footWrap clearfix">
+    <div class="footDiv_two">
+        <div class="foot_two">
+            <p>Copyright© 2018 All Rights Reserved. 桂林电子科技大学数学与计算科学学院</p>
+            <div class="choice" style="width: 230px;margin-top: 20px;float: right; color: rgb(255,255,255);line-height: 28px;padding-left: 0px;" frag="窗口4">
+                <select name="select"  onchange="MM_jumpMenu('parent',this,1)" style="height: 28px; line-height: 28px;font-size: 14px; margin-right: 10px; width: 230px;">
+
+                    <option value>== 相关链接 ==</option>
+                    <option value="">清华大学</option>
+                    <option value="">北京大学</option>
+                    <option value="">厦门大学</option>
+                    <option value="">复旦大学</option>
+                    <option value="">上海大学</option>
+                </select>
+                <div class="pt10">
+                    <a class="lh1 white fs16 fr" href="" target="_blank" title="管理入口">管理入口</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
