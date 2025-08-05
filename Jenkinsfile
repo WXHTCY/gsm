@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Pulling code from GitHub main branch..."
                 // 只保留从主要仓库拉取代码的配置
-                git url: 'https://github.com/panjunlin1/ordering-back.git', branch: 'main'
+                git url: 'https://github.com/WXHTCY/gsm.git', branch: 'main'
             }
         }
         stage('构建项目') {
