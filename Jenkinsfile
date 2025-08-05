@@ -13,6 +13,7 @@ pipeline {
             }
         }
         
+        
         stage('构建项目') {
             steps {
                 echo "Building WAR package with Maven..."
