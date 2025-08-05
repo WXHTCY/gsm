@@ -72,7 +72,7 @@ pipeline {
                                     ls -ld $TOMCAT_WEBAPPS || { echo "ERROR: 目标目录 $TOMCAT_WEBAPPS 不存在!"; exit 1; }
                                     
                                     echo "=== 检查WAR包是否上传成功 ==="
-                                    ls -l $TOMCAT_WEBAPPS/ChollegeHoem.war || { echo "ERROR: WAR包未上传到 $TOMCAT_WEBAPPS!"; exit 1; }
+                                    ls -l $TOMCAT_WEBAPPS/CollegeHome.war || { echo "ERROR: WAR包未上传到 $TOMCAT_WEBAPPS!"; exit 1; }
                                     
                                     echo "=== 停止Tomcat服务 ==="
                                     /root/apache-tomcat-9.0.89/bin/shutdown.sh
