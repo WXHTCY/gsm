@@ -18,15 +18,15 @@ pipeline {
                 bat 'mvn clean package -Dmaven.test.skip=true'
                 // 检查 WAR 包是否生成
                 bat '''
-                    if not exist "target/gsm.war" (
+                    if not exist "target/CollegeHome.war" (
                         echo "ERROR: WAR package not generated!"
                         exit 1
                     ) else (
-                        echo "WAR package generated successfully: target/gsm.war"
+                        echo "WAR package generated successfully: target/CollegeHome.war"
                         dir target (
-                            dir gsm.war (
+                            dir CollegeHome.war (
                                 echo "WAR package size:"
-                                dir /s /b gsm.war
+                                dir /s /b CollegeHome.war
                             )
                         )
                     )
@@ -42,6 +42,7 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
         
         stage('部署到服务器') {
             steps {
@@ -49,11 +50,11 @@ pipeline {
                 
                 // 先确认本地WAR包存在
                 script {
-                    def warFile = fileExists('target/gsm.war')
+                    def warFile = fileExists('target/CollegeHome.war')
                     if (!warFile) {
                         error("WAR package not found! Cannot deploy.")
                     }
-                    echo "Local WAR package confirmed: target/gsm.war"
+                    echo "Local WAR package confirmed: target/CollegeHome.war"
                 }
                 
                 sshPublisher(publishers: [
@@ -61,7 +62,7 @@ pipeline {
                         configName: 'my-server',
                         transfers: [
                             sshTransfer(
-                                sourceFiles: 'target/gsm.war',
+                                sourceFiles: 'target/CollegeHome.war',
                                 remoteDirectory: '/apache-tomcat-9.0.89/webapps',
                                 cleanRemote: false,
                                 flatten: true,
@@ -73,7 +74,7 @@ pipeline {
                                     ls -ld $TOMCAT_WEBAPPS || { echo "ERROR: 目标目录 $TOMCAT_WEBAPPS 不存在!"; exit 1; }
                                     
                                     echo "=== 检查WAR包是否上传成功 ==="
-                                    ls -l $TOMCAT_WEBAPPS/gsm.war || { echo "ERROR: WAR包未上传到 $TOMCAT_WEBAPPS!"; exit 1; }
+                                    ls -l $TOMCAT_WEBAPPS/CollegeHome.war || { echo "ERROR: WAR包未上传到 $TOMCAT_WEBAPPS!"; exit 1; }
                                     
                                     echo "=== 停止Tomcat服务 ==="
                                     /root/apache-tomcat-9.0.89/bin/shutdown.sh
@@ -99,7 +100,7 @@ pipeline {
         success {
             echo "=============================================="
             echo "🎉 Build and deployment completed successfully!"
-            echo "Access URL: http://111.230.94.55:8080/gsm"
+            echo "Access URL: http://111.230.94.55:8080/CollegeHome"
             echo "=============================================="
         }
         failure {
