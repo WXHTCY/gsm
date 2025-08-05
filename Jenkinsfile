@@ -12,6 +12,7 @@ pipeline {
                 git url: 'https://github.com/WXHTCY/gsm.git', branch: 'main'
             }
         }
+
         
         stage('构建项目') {
             steps {
