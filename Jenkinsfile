@@ -40,6 +40,7 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
         
         stage('部署到服务器') {
             steps {
