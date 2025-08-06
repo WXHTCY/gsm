@@ -18,15 +18,24 @@
                             // 把JSON串转换成JavaScript对象
                             let data = JSON.parse(xhr.responseText);
                             // 判断对象的status属性值
+                            // 根据后端实际返回的数据结构判断登录是否成功
                             if(data.status=="200"){
                                 // 解析数据，添加到ul中
                                 localStorage.setItem("menus",xhr.responseText)
-                                window.location.href="index.html";
+                                // 使用相对于当前路径的明确跳转路径
+                                window.location.href="./index.html";
+                            } else {
+                                // 登录失败的处理
+                                alert("登录失败，请检查用户名和密码！");
                             }
+                        } else {
+                            // 请求失败的处理
+                            alert("登录请求失败，请稍后重试！");
                         }
                     }
                 }
-                xhr.open("POST", "http://localhost:8080/CollegeHome/login", true);
+                // 使用相对路径而不是硬编码的绝对路径
+                xhr.open("POST", "login", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xhr.send(`username=${username}&password=${password}`)
             }
