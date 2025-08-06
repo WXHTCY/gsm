@@ -9,9 +9,11 @@ pipeline {
             steps {
                 echo "Pulling code from GitHub main branch..."
                 // 只保留从主要仓库拉取代码的配置
-                git url: 'https://github.com/panjunlin1/ordering-back.git', branch: 'main'
+                git url: 'https://github.com/WXHTCY/gsm.git', branch: 'main'
             }
         }
+        
+
         stage('构建项目') {
             steps {
                 echo "Building WAR package with Maven..."
@@ -33,8 +35,6 @@ pipeline {
                 '''
             }
         }
-
-
 
         stage('运行测试') {
             steps {
@@ -100,7 +100,7 @@ pipeline {
         success {
             echo "=============================================="
             echo "🎉 Build and deployment completed successfully!"
-            echo "Access URL: http://111.230.94.55:8080/CollegeHome"
+            echo "Access URL: http://111.230.94.55:8081/CollegeHome"
             echo "=============================================="
         }
         failure {
